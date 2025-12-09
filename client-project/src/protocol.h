@@ -1,5 +1,5 @@
 /*
- * protocol.h
+* protocol.h  CLIENT
  *
  * Shared header file for UDP client and server
  * Contains protocol definitions, data structures, constants and function prototypes
@@ -8,31 +8,29 @@
 #ifndef PROTOCOL_H_
 #define PROTOCOL_H_
 
-#include <stdint.h>
+// Shared application parameters
+#define SERVER_PORT 56700  // Server port (change if needed)
+#define BUFFER_SIZE 512    // Buffer size for messages
+#define STATUS_SUCCESS 0
+#define STATUS_CITY_NOT_AVAILABLE 1
+#define STATUS_REQUEST_NOT_VALID 2
 
-/*
- * ============================================================================
- * PROTOCOL CONSTANTS
- * ============================================================================
- */
+typedef struct {
+ char type;        // Weather data type: 't', 'h', 'w', 'p'
+ char city[64];    // City name (null-terminated string)
+} weather_request_t;
 
-// #define ...
+typedef struct {
+ unsigned int status;  // Response status code
+ char type;            // Echo of request type
+ float value;          // Weather data value
+} weather_response_t;
 
-/*
- * ============================================================================
- * PROTOCOL DATA STRUCTURES
- * ============================================================================
- */
+// Function prototypes
+void errorhandler(char *errorMessage);
 
-// Weather request and response structures 
+void usage (const char* progname);
 
-/*
- * ============================================================================
- * FUNCTION PROTOTYPES
- * ============================================================================
- */
-
-// Add here the signatures of the functions you implement
-
+void clearwinsock();
 
 #endif /* PROTOCOL_H_ */
