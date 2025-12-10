@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
 		memset(&request_buffer,0,BUFFER_SIZE);
 		memset(&request_buffer,0,BUFFER_SIZE);
 
-		if ((rcv_msg_size = recvfrom(my_socket,(void*)request_buffer, BUFFER_SIZE,0,(struct sockaddr*)&client_address,(socklen_t*)&client_address_size) < 0))
+		if ((rcv_msg_size = recvfrom(my_socket,(void*)request_buffer, BUFFER_SIZE,0,(struct sockaddr*)&client_address,/*(socklen_t*)*/&client_address_size) < 0))
         {
 			errorhandler("recvfrom() fallita.\n");
 			// close connection

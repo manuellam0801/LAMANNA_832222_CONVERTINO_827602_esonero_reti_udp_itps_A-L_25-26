@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
 	char response_buffer[BUFFER_SIZE];
 	struct sockaddr_in clnt;
 	int len = sizeof(clnt);
-	if(recvfrom(c_socket,(void*)response_buffer,BUFFER_SIZE,0,(struct sockaddr*)&clnt,(socklen_t*)&len)<=0)
+	if(recvfrom(c_socket,(void*)response_buffer,BUFFER_SIZE,0,(struct sockaddr*)&clnt,/*(socklen_t*)*/&len)<=0)
 	{
 		printf("Errore ricezione.\n");
 		return 1;
@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
 	{
 		printf("Ricevuto risultato dal server %s(ip %s). Citta' non disponibile\n",name,ip);
 	}
-	else
+	else if (resp.status==2)
 	{
 		printf("Ricevuto risultato dal server %s (ip %s). Richiesta non valida\n",name,ip);
 	}
